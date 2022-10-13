@@ -1,2 +1,2 @@
 # Ex_movieWorkshop
-Solution for the moviesworkshop exercises from spring2 class
+Solution for the moviesworkshop with database exercises from "forbind dit spring boot projekt med database" class
