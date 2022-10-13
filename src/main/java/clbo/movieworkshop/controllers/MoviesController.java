@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 public class MoviesController {
 
-    MovieService movieService;
+    private MovieService movieService;
 
     public MoviesController(MovieService movieService) {
         this.movieService = movieService;

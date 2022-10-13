@@ -1,10 +1,8 @@
 package clbo.movieworkshop.services;
 
 import clbo.movieworkshop.models.Movie;
-import clbo.movieworkshop.repositories.MovieRepository;
+import clbo.movieworkshop.repositories.MovieDBRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,10 +11,10 @@ import java.util.List;
 @Service
 public class MovieService {
 
-    MovieRepository movieRepository;
+    MovieDBRepository movieRepository;
 
-    public MovieService(MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
+    public MovieService() {
+        this.movieRepository = new MovieDBRepository();
     }
 
     // Exercise 3.2 (show in class)
@@ -35,7 +33,11 @@ public class MovieService {
         for (int i = 0; i < 10; i++) {
             m.add(getRandom());
         }
-        Collections.sort(m);
+
+        // Collections.sort() uses (m)´s compareTo() method
+        // to check if one object is larger, equal or less than
+        // another object.
+        Collections.sort(m); // sort uses TimSort algorithm.
         return m;
     }
 
@@ -72,7 +74,6 @@ public class MovieService {
     }
 
     // Exercise 3.7
-    @GetMapping("longest")
     public String longest(String g1, String g2 ){
 
         var g1AvgLength = 0;
@@ -82,10 +83,10 @@ public class MovieService {
 
         for (Movie m: movieRepository.readAll()) {
             if(m.getSubject().equals(g1)){
-                g1AvgLength += Integer.parseInt(m.getLength());
+                g1AvgLength += m.getLength();
                 g1Count++;
             } else if(m.getSubject().equals(g2)) {
-                g2AvgLength += Integer.parseInt(m.getLength());
+                g2AvgLength += m.getLength();
                 g2Count++;
             }
         }

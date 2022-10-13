@@ -3,14 +3,16 @@ package clbo.movieworkshop.models;
 public class Movie implements Comparable<Movie> {
 
     // Year;Length;Title;Subject;Popularity;Awards
-    private String year;
-    private String length;
+    private int id;
+    private int year;
+    private int length;
     private String title;
     private String subject;
-    private String popularity;
+    private int popularity;
     private String awards;
 
-    public Movie(String year, String length, String title, String subject, String popularity, String awards) {
+    public Movie(int id, int year, int length, String title, String subject, int popularity, String awards) {
+        this.id = id;
         this.year = year;
         this.length = length;
         this.title = title;
@@ -22,19 +24,27 @@ public class Movie implements Comparable<Movie> {
     public Movie() {
     }
 
-    public String getYear() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public String getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
@@ -54,11 +64,11 @@ public class Movie implements Comparable<Movie> {
         this.subject = subject;
     }
 
-    public String getPopularity() {
+    public int getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(String popularity) {
+    public void setPopularity(int popularity) {
         this.popularity = popularity;
     }
 
@@ -72,7 +82,15 @@ public class Movie implements Comparable<Movie> {
 
     @Override
     public int compareTo(Movie o) {
-        // return: -1 if this is smaller than o, 0 if they are equal, 1 if this is larger than o
-        return Integer.parseInt(this.popularity) - Integer.parseInt(o.popularity);
+        // return: -1 if this is smaller than o,
+        // 0 if they are equal,
+        // 1 if this is larger than o
+        // Ex: 5-10 = -5 then 5 (first) is smalest.
+        // Ex: 5-5 = 0 then both are equal
+        // Ex: 10-5 = 5 then 10 (first) is largest
+        // debug: //System.out.print(Integer.parseInt(this.popularity) - Integer.parseInt(o.popularity) + ", ");
+        return this.popularity - o.popularity;
+
+        // if we would look inside
     }
 }
